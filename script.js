@@ -8,8 +8,11 @@ let btnBuscar = document.getElementById("btnBuscar");
 let btnOrdenarAsc = document.getElementById("ordenarAsc");
 let btnOrdenarDesc = document.getElementById("ordenarDesc");
 
+const btnRubroBebida = document.getElementById("bebidas");
+
 btnBuscar.onclick = filtrar;
-btnOrdenarAsc.onclick = ordenarCreciente(productos, "precio");
+btnOrdenarAsc.onclick = ordenarCreciente;
+btnRubroBebida.onclick = filtrarRubro;
 
 renderizarProductos(productos);
 // renderizarCarrito(carrito);
@@ -30,53 +33,93 @@ function renderizarProductos(array) {
 
     contenedorProductos.append(tarjetaProducto);
 
-    // let btnCarrito = document.getElementById(producto.id);
-    //btnCarrito.addEventListener("click", mostrarAlert);
+    let btnCarrito = document.getElementById(producto.id);
+    btnCarrito.addEventListener("click", agregarAlCarrito);
   });
 }
 
-function filtrar() {
-  if (
-    buscador.value != "" ||
-    Number(inputMin.value) > 0 ||
-    Number(inputMax.value) > 0
-  ) {
-    let productosFiltrados;
-    console.log(buscador.value);
-    console.log(Number(inputMin.value));
-    console.log(Number(inputMax.value));
+// function filtrar() {
+//   if (
+//     buscador.value != "" ||
+//     Number(inputMin.value) > 0 ||
+//     Number(inputMax.value) > 0
+//   ) {
+//     let productosFiltrados;
+//     console.log(buscador.value);
+//     console.log(Number(inputMin.value));
+//     console.log(Number(inputMax.value));
 
-    if (buscador.value) {
-      productosFiltrados = productos.filter(
-        (producto) =>
-          producto.nombre
-            .toLowerCase()
-            .includes(buscador.value.toLowerCase()) ||
-          producto.rubro.toLowerCase().includes(buscador.value.toLowerCase())
-      );
-    } else if (inputMin.value || inputMax.value) {
-      productosFiltrados = productos.filter(
-        (producto) =>
-          producto.precio > Number(inputMin.value) &&
-          producto.precio < Number(inputMax.value)
-      );
-    }
-    renderizarProductos(productosFiltrados);
-  } else {
-    renderizarProductos(productos);
+//     if (buscador.value) {
+//       productosFiltrados = productos.filter(
+//         (producto) =>
+//           producto.nombre
+//             .toLowerCase()
+//             .includes(buscador.value.toLowerCase()) ||
+//           producto.rubro.toLowerCase().includes(buscador.value.toLowerCase())
+//       );
+//     } else if (inputMin.value || inputMax.value) {
+//       productosFiltrados = productos.filter(
+//         (producto) =>
+//           producto.precio > Number(inputMin.value) &&
+//           producto.precio < Number(inputMax.value)
+//       );
+//     }
+//     renderizarProductos(productosFiltrados);
+//   } else {
+//     renderizarProductos(productos);
+//   }
+// }
+
+function filtrar() {
+  let productosFiltrados = productos;
+
+  if (buscador.value !== "") {
+    productosFiltrados = productosFiltrados.filter((producto) =>
+      producto.nombre.toLowerCase().includes(buscador.value.toLowerCase())
+    );
   }
+  if (Number(inputMin.value) > 0) {
+    productosFiltrados = productosFiltrados.filter(
+      (producto) => producto.precio >= Number(inputMin.value)
+    );
+  }
+  if (Number(inputMax.value) > 0) {
+    productosFiltrados = productosFiltrados.filter(
+      (producto) => producto.precio <= Number(inputMax.value)
+    );
+  }
+
+  renderizarProductos(productosFiltrados);
 }
 
-function ordenarCreciente(array, propiedad) {
-  console.log("Ordenar creciente");
-  array.sort((a, b) => {
-    if (a[propiedad] > b[propiedad]) {
+function ordenarCreciente() {
+  productos.sort((a, b) => {
+    if (a.precio > b.precio) {
       return 1;
     }
-    if (a[propiedad] < b[propiedad]) {
+    if (a.precio < b.precio) {
       return -1;
     }
     return 0;
   });
   renderizarProductos(productos);
+}
+
+function filtrarRubro(e) {
+  console.log("E", e.target.id);
+  let productosFiltrados;
+  productosFiltrados = productos.filter(
+    (producto) =>
+      producto.rubro.toLowerCase() == e.target.innerText.toLowerCase()
+  );
+}
+
+function agregarAlCarrito(e) {
+  let id = e.target.id;
+  let productoBuscado = productos.find((producto) => producto.id == id);
+  console.log(productoBuscado.id);
+}
+
+function renderizarCarrito() {
+  //clase 9 - 1:30
 }
