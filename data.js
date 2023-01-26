@@ -5,7 +5,7 @@ const productos = [
     rubro: "bebidas",
     precio: 250,
     stock: 50,
-    img: "https://images.pexels.com/photos/78778/fire-lighter-the-flame-firefox-78778.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    img: "https://images.pexels.com/photos/4389678/pexels-photo-4389678.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const productos = [
     rubro: "almacen",
     precio: 240,
     stock: 50,
-    img: "https://images.pexels.com/photos/78778/fire-lighter-the-flame-firefox-78778.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    img: "https://images.pexels.com/photos/4110251/pexels-photo-4110251.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const productos = [
     rubro: "almacen",
     precio: 140,
     stock: 25,
-    img: "https://images.pexels.com/photos/78778/fire-lighter-the-flame-firefox-78778.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    img: "https://images.pexels.com/photos/4110251/pexels-photo-4110251.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: 6,

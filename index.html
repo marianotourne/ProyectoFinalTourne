@@ -6,28 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PreEntrega3 - Tourné</title>
     <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
   </head>
   <body>
-    <input id="buscador" placeholder="Buscar por nombre o rubro" />
-    <input id="min" placeholder="Buscar por precio mínimo" />
-    <input id="max" placeholder="Buscar por precio máximo" />
-    <button id="btnBuscar">BUSCAR</button>
+    <section class="mainContainer">
+      <input id="buscador" placeholder="Qué estas buscando?" />
+      <input id="min" placeholder="Buscar por precio mínimo" />
+      <input id="max" placeholder="Buscar por precio máximo" />
+      <button id="btnBuscar">BUSCAR</button>
 
-    <button id="ordenarAsc">Ordenar Asc</button>
-    <button id="ordenarDesc">Ordenar Desc</button>
-
+      <button id="ordenarAsc">Ordenar Asc</button>
+      <button id="ordenarDesc">Ordenar Desc</button>
+    </section>
     <div id="contenedorRubros">
-      <!-- <button id="bebidas" class="botonRubro">Bebidas</button>
-      <button id="almacen" class="botonRubro">Almacen</button>
-      <button id="galletitas" class="botonRubro">Galletitas</button>
-      <button id="golosinas" class="botonRubro">Golosinas</button>
-      <button id="varios" class="botonRubro">Varios</button> -->
+      <button class="botonRubro" id="todos">TODOS</button>
     </div>
-
     <div id="contenedorProductos"></div>
     <div id="contenedorCarrito"></div>
+
     <button id="comprar">Finalizar Compra</button>
 
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./data.js"></script>
     <script src="./script.js"></script>
   </body>
