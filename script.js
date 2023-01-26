@@ -4,23 +4,27 @@ let contenedorCarrito = document.getElementById("contenedorCarrito");
 let buscador = document.getElementById("buscador");
 let inputMin = document.getElementById("min");
 let inputMax = document.getElementById("max");
+const rubrosFiltrados = getRubrosFiltrados(productos);
+
+let carrito = [];
+if (localStorage.getItem("carrito")) {
+  carrito = JSON.parse(localStorage.getItem("carrito"));
+}
 
 let btnBuscar = document.getElementById("btnBuscar");
 let btnOrdenarAsc = document.getElementById("ordenarAsc");
 let btnOrdenarDesc = document.getElementById("ordenarDesc");
-
-// const btnRubroBebida = document.getElementById("bebidas");
+let btnVaciarCarrito = document.getElementById("btnVaciarCarrito");
+let btnComprar = document.getElementById("btnComprar");
 
 btnBuscar.onclick = filtrar;
 btnOrdenarAsc.onclick = ordenarCreciente;
 btnOrdenarDesc.onclick = ordenarDecreciente;
+btnVaciarCarrito.onclick = vaciarCarrito;
+btnComprar.onclick = finalizarCompra;
 
 renderizarProductos(productos);
-const rubrosFiltrados = getRubrosFiltrados(productos);
 renderizarRubros(rubrosFiltrados);
-
-// btnRubroBebida.onclick = filtrarRubro;
-let carrito = [];
 renderizarCarrito(carrito);
 
 function renderizarProductos(array) {
@@ -152,6 +156,8 @@ function agregarAlCarrito(e) {
     carrito.push(productoBuscado);
   }
 
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
   renderizarCarrito(carrito);
 
   Toastify({
@@ -192,8 +198,14 @@ function renderizarCarrito(productosEnCarrito) {
   });
 }
 
-/*
-liberia para finalizar compra
+function vaciarCarrito() {
+  localStorage.removeItem("carrito");
+  carrito = [];
+  renderizarCarrito(carrito);
+}
+
+function finalizarCompra() {
+  vaciarCarrito();
   Swal.fire({
     position: "center",
     icon: "success",
@@ -202,4 +214,4 @@ liberia para finalizar compra
     timer: 4000,
     timerProgressBar: true,
   });
-  */
+}
