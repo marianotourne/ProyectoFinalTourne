@@ -12,6 +12,10 @@
   font-family: var(--font);
 }
 
+button {
+  cursor: pointer;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -20,6 +24,13 @@ body {
   min-height: 100vh;
   display: grid;
   place-content: center;
+}
+
+#carritoImg {
+  width: 50px;
+  position: sticky;
+  left: 95%;
+  top: 10px;
 }
 
 .mainContainer {
@@ -31,16 +42,77 @@ body {
 }
 
 .mainContainer * {
-  width: 80%;
+  width: 25%;
   padding: 8px;
   margin: 4px 0;
 }
+
+.carritoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  position: sticky;
+  left: 58%;
+  top: 10px;
+  background-color: #88b3f2;
+  border-radius: 6px;
+}
+
+.carritoContainer #contenedorCarrito {
+  margin: 0 auto;
+  min-height: 100px;
+  width: 90%;
+  padding: 8px 4px;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+}
+
+.carritoContainer .carritoContainerBotones button {
+  padding: 8px;
+  margin: 6px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+}
+.carritoContainer .carritoContainerBotones button:first-child {
+  background-color: red;
+}
+.carritoContainer .carritoContainerBotones button:last-child {
+  background-color: green;
+}
+
+.itemCarrito {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.itemCarrito h3 {
+  font-size: 1.4rem;
+}
+
+.itemCarrito p {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  line-height: 2;
+}
+
+.botonEliminarProducto {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
 #contenedorRubros {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 8px 0;
 }
+
 #contenedorRubros button {
   padding: 8px;
   margin: 8px;
@@ -58,33 +130,24 @@ body {
   background-color: var(--blue);
 }
 
+.botonesOrdenar {
+  display: flex;
+  align-content: center;
+  justify-content: right;
+  width: 90%;
+}
+
+.botonesOrdenar * {
+  padding: 6px;
+  margin: 0 4px;
+  font-size: 2rem;
+}
+
 #contenedorProductos {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-}
-
-.carritoContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.carritoContainer #contenedorCarrito {
-  margin: 0 auto;
-  border: 2px solid black;
-  min-height: 100px;
-  width: 90%;
-  padding: 18px;
-  font-size: 1.8rem;
-  text-transform: uppercase;
-}
-
-.itemCarrito {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
 }
 
 .producto {
@@ -112,7 +175,10 @@ body {
   font-weight: bold;
 }
 .producto img {
-  height: 50%;
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+  padding: 20px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -123,11 +189,14 @@ body {
   background-color: rgb(100, 100, 233);
   border: 3px solid white;
   border-radius: 8px;
-  cursor: pointer;
   color: white;
 }
 
 .btnCompra:hover {
   background-color: rgb(74, 74, 170);
   border: 3px solid rgb(100, 100, 233);
+}
+
+.isHidden {
+  display: none;
 }
