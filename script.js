@@ -2,9 +2,9 @@ let contenedorProductos = document.getElementById("contenedorProductos");
 let contenedorRubros = document.getElementById("contenedorRubros");
 let carritoContainer = document.querySelector(".carritoContainer");
 let contenedorCarrito = document.getElementById("contenedorCarrito");
-let buscador = document.getElementById("buscador");
-let inputMin = document.getElementById("min");
-let inputMax = document.getElementById("max");
+let buscarTexto = document.getElementById("buscarTexto");
+let buscarMin = document.getElementById("buscarMin");
+let buscarMax = document.getElementById("buscarMax");
 let btnCarritoImg = document.getElementById("carritoImg");
 const rubrosFiltrados = getRubrosFiltrados(productos);
 
@@ -34,17 +34,17 @@ renderizarCarrito(carrito);
 function renderizarProductos(array) {
   contenedorProductos.innerHTML = "";
   array.forEach(({ id, nombre, precio, img: imagen }) => {
-    let tarjetaProducto = document.createElement("div");
-    tarjetaProducto.classList.add("producto");
-    tarjetaProducto.id = `tarjeta${id}`;
-    tarjetaProducto.innerHTML = `
+    let productCard = document.createElement("div");
+    productCard.classList.add("producto");
+    productCard.id = `tarjeta${id}`;
+    productCard.innerHTML = `
         <img src=${imagen} alt=${nombre}>    
         <h3>${nombre}</h3>
         <p>$ ${precio}</p>
         <button id=${id} class="btnCompra">Agregar</button>
         `;
 
-    contenedorProductos.append(tarjetaProducto);
+    contenedorProductos.append(productCard);
 
     let btnCarrito = document.getElementById(id);
     btnCarrito.addEventListener("click", agregarAlCarrito);
@@ -86,26 +86,26 @@ function renderizarRubros(array) {
 
 function filtrar() {
   productosFiltrados = productos;
-  if (buscador.value !== "") {
+  if (buscarTexto.value !== "") {
     productosFiltrados = productosFiltrados.filter((producto) =>
-      producto.nombre.toLowerCase().includes(buscador.value.toLowerCase())
+      producto.nombre.toLowerCase().includes(buscarTexto.value.toLowerCase())
     );
   }
-  if (Number(inputMin.value) > 0) {
+  if (Number(buscarMin.value) > 0) {
     productosFiltrados = productosFiltrados.filter(
-      (producto) => producto.precio >= Number(inputMin.value)
+      (producto) => producto.precio >= Number(buscarMin.value)
     );
   }
-  if (Number(inputMax.value) > 0) {
+  if (Number(buscarMax.value) > 0) {
     productosFiltrados = productosFiltrados.filter(
-      (producto) => producto.precio <= Number(inputMax.value)
+      (producto) => producto.precio <= Number(buscarMax.value)
     );
   }
 
   renderizarProductos(productosFiltrados);
-  buscador.value = "";
-  inputMin.value = "";
-  inputMax.value = "";
+  buscarTexto.value = "";
+  buscarMin.value = "";
+  buscarMax.value = "";
 }
 
 function ordenarCreciente() {
@@ -195,16 +195,16 @@ function renderizarCarrito(productosEnCarrito) {
   contenedorCarrito.append(tituloCarrito);
 
   productosEnCarrito.forEach(({ id, nombre, precio, unidades, subtotal }) => {
-    tarjetaProducto = document.createElement("div");
-    tarjetaProducto.classList.add("itemCarrito");
-    tarjetaProducto.innerHTML = `
+    productCard = document.createElement("div");
+    productCard.classList.add("itemCarrito");
+    productCard.innerHTML = `
     <p>${nombre}</p>
     <p>$ ${precio}</p>
     <p>${unidades}</p>
     <p>$ ${subtotal}</p>
     <button id=${id}>X</button>
     `;
-    contenedorCarrito.append(tarjetaProducto);
+    contenedorCarrito.append(productCard);
 
     let botonEliminar = document.getElementById(id);
     botonEliminar.classList.add("botonEliminarProducto");
