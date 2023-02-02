@@ -102,7 +102,7 @@ const productos = [
     nombre: "agua mineral sin gas",
     rubro: "bebidas",
     precio: 215,
-    img: "https://images.pexels.com/photos/78778/fire-lighter-the-flame-firefox-78778.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    img: "https://images.pexels.com/photos/416528/pexels-photo-416528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: 16,
@@ -123,7 +123,7 @@ const productos = [
     nombre: "agua saborizada",
     rubro: "bebidas",
     precio: 310,
-    img: "https://images.pexels.com/photos/78778/fire-lighter-the-flame-firefox-78778.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    img: "https://images.pexels.com/photos/5946611/pexels-photo-5946611.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: 19,
