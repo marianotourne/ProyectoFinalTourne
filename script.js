@@ -139,7 +139,6 @@ function miPrograma(productos) {
         (producto) => producto.precio <= Number(buscarMax.value)
       );
     }
-
     renderizarProductos(productosFiltrados);
     buscarTexto.value = "";
     buscarMin.value = "";
@@ -295,10 +294,13 @@ function miPrograma(productos) {
 
   function finalizarCompra() {
     vaciarCarrito();
+    const numeroOrden = parseInt(Math.random() * 100000);
+
     Swal.fire({
       position: "center",
       icon: "success",
       title: "Gracias por su compra",
+      text: `Número de orden: ${numeroOrden}`,
       showConfirmButton: false,
       timer: 4000,
       timerProgressBar: true,
