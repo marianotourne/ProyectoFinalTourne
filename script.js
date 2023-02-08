@@ -17,6 +17,7 @@ function miWeb(productos) {
   let btnCarritoImg = document.getElementById("carritoImg");
   const rubrosFiltrados = getRubrosFiltrados(productos);
   let conteoProductos = document.getElementById("conteoProductos");
+  let cantidadEnCarrito = document.getElementById("cantidadCarrito");
 
   let carrito = localStorage.getItem("carrito")
     ? JSON.parse(localStorage.getItem("carrito"))
@@ -141,13 +142,13 @@ function miWeb(productos) {
       );
     }
     renderizarProductos(productosFiltrados);
-    contarProductos(productosFiltrados);
+    contarProductosBuscados(productosFiltrados);
     buscarTexto.value = "";
     buscarMin.value = "";
     buscarMax.value = "";
   }
 
-  function contarProductos(array) {
+  function contarProductosBuscados(array) {
     conteoProductos.innerHTML = "";
     const conteo = document.createElement("p");
     conteo.classList.add("productosEncontrados");
@@ -185,13 +186,13 @@ function miWeb(productos) {
   function filtrarRubro(e) {
     if (e.target.id == "todos") {
       renderizarProductos(productos);
-      contarProductos(productos);
+      contarProductosBuscados(productos);
     } else {
       productosFiltrados = productos.filter(
         (producto) => producto.rubro.toLowerCase() == e.target.id
       );
       renderizarProductos(productosFiltrados);
-      contarProductos(productosFiltrados);
+      contarProductosBuscados(productosFiltrados);
     }
   }
 
@@ -233,29 +234,32 @@ function miWeb(productos) {
 
   function renderizarCarrito(productosEnCarrito) {
     contenedorCarrito.innerText = "";
+    cantidadEnCarrito.innerText = "";
 
     tituloCarrito = document.createElement("div");
     tituloCarrito.classList.add("itemCarrito");
     tituloCarrito.innerHTML = `
-  <h3>Producto</h3>
-  <h3>P. Unit.</h3>
-  <h3>Cant.</h3>
-  <h3>Subtotal</h3>
-  `;
+      <h3>Producto</h3>
+      <h3>P. Unit.</h3>
+      <h3>Cant.</h3>
+      <h3>Subtotal</h3>
+    `;
     contenedorCarrito.append(tituloCarrito);
 
     let totalCarrito = 0;
+    let cantidadTotalCarrito = 0;
     productosEnCarrito.forEach(({ id, nombre, precio, unidades, subtotal }) => {
       totalCarrito = totalCarrito + subtotal;
+      cantidadTotalCarrito = cantidadTotalCarrito + unidades;
       productCard = document.createElement("div");
       productCard.classList.add("itemCarrito");
       productCard.innerHTML = `
-    <p>${nombre}</p>
-    <p>$ ${precio}</p>
-    <p>${unidades}</p>
-    <p>$ ${subtotal}</p>
-    <button id=${id}>X</button>
-    `;
+        <p>${nombre}</p>
+        <p>$ ${precio}</p>
+        <p>${unidades}</p>
+        <p>$ ${subtotal}</p>
+        <button id=${id}>X</button>
+      `;
       contenedorCarrito.append(productCard);
 
       let botonEliminar = document.getElementById(id);
@@ -266,9 +270,13 @@ function miWeb(productos) {
     importeTotalCarrito = document.createElement("div");
     importeTotalCarrito.classList.add("itemCarrito");
     importeTotalCarrito.innerHTML = `
-    <p>Total: $${totalCarrito}</p>
+      <p>Total: $${totalCarrito}</p>
     `;
     contenedorCarrito.append(importeTotalCarrito);
+
+    cantTotalCarrito = document.createElement("p");
+    cantTotalCarrito.innerText = cantidadTotalCarrito;
+    cantidadEnCarrito.append(cantTotalCarrito);
   }
 
   function eliminarProducto(e) {
