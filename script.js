@@ -1,12 +1,12 @@
 async function traerProductos() {
   const respuesta = await fetch("./data.json");
   const productosBD = await respuesta.json();
-  miPrograma(productosBD);
+  miWeb(productosBD);
 }
 
 traerProductos();
 
-function miPrograma(productos) {
+function miWeb(productos) {
   let contenedorProductos = document.getElementById("contenedorProductos");
   let contenedorRubros = document.getElementById("contenedorRubros");
   let carritoContainer = document.querySelector(".carritoContainer");
