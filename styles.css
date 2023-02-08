@@ -202,12 +202,17 @@ body {
 /* Botones ordenar */
 .botonesOrdenar {
   display: flex;
-  align-content: center;
-  justify-content: right;
+  align-items: center;
+  justify-content: space-between;
   width: 90%;
+  margin: 0 auto;
 }
-
-.botonesOrdenar * {
+#conteoProductos {
+  color: var(--blue);
+  font-size: var(--md);
+  font-weight: bold;
+}
+.botonesOrdenar button {
   padding: 6px;
   margin: 0 4px;
   font-size: 2rem;

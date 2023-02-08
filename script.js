@@ -16,6 +16,7 @@ function miWeb(productos) {
   let buscarMax = document.getElementById("buscarMax");
   let btnCarritoImg = document.getElementById("carritoImg");
   const rubrosFiltrados = getRubrosFiltrados(productos);
+  let conteoProductos = document.getElementById("conteoProductos");
 
   let carrito = localStorage.getItem("carrito")
     ? JSON.parse(localStorage.getItem("carrito"))
@@ -140,9 +141,19 @@ function miWeb(productos) {
       );
     }
     renderizarProductos(productosFiltrados);
+    contarProductos(productosFiltrados);
     buscarTexto.value = "";
     buscarMin.value = "";
     buscarMax.value = "";
+  }
+
+  function contarProductos(array) {
+    conteoProductos.innerHTML = "";
+    const conteo = document.createElement("p");
+    conteo.classList.add("productosEncontrados");
+    const cantidad = array.length;
+    conteo.innerText = `Se encontraron ${cantidad} productos`;
+    conteoProductos.append(conteo);
   }
 
   function ordenarCreciente() {
@@ -174,11 +185,13 @@ function miWeb(productos) {
   function filtrarRubro(e) {
     if (e.target.id == "todos") {
       renderizarProductos(productos);
+      contarProductos(productos);
     } else {
       productosFiltrados = productos.filter(
         (producto) => producto.rubro.toLowerCase() == e.target.id
       );
       renderizarProductos(productosFiltrados);
+      contarProductos(productosFiltrados);
     }
   }
 
